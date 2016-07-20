@@ -29,9 +29,10 @@ class BDC_Storify_Embed {
 	function storify_embed_handler( $matches, $attr, $url ) {
 		$strip = array( 'http:', 'https:' );
 
+		// Trim out protocol and trailing slash from url
 		$story_url = esc_url( rtrim( str_replace( $strip, '', $url ), '/' ) );
-		$js_url = $story_url . '.js?border=false';
-		$embed_url = $story_url . '/embed?border=false';
+		$js_url = $story_url . '.js?border=false'; // Inline JS URL for story
+		$embed_url = $story_url . '/embed?border=false'; // The src for our iframe
 
 		$embed = '<div class="storify"><iframe src="' . $embed_url . '" width="100%" height="750" frameborder="no" allowtransparency="true"></iframe><script src="' . $js_url . '"></script><noscript>[<a href="' . $story_url . '" target="_blank">View this on Storify</a>]</noscript></div>';
 
